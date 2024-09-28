@@ -1,0 +1,38 @@
+services:
+  web-application:
+    build:
+      context: ./webapplication
+    image: ubuntu-web-application  # 이미지 이름 명시
+    container_name: ubuntu-web-application  # 컨테이너 이름 명시
+    expose:
+      - "8000"
+    volumes:
+      # - static_volume:/app/myproject/staticfiles  # Django 정적 파일 공유 볼륨
+      - ./webapplication/myproject:/app/myproject  # myproject 디렉토리 전체 마운트
+      - ./webapplication/conf:/app/conf  # conf 디렉토리 전체 마운트
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: ./webserver
+    image: ubuntu-web-server # 이미지 이름 명시
+    container_name: ubuntu-web-server  # 컨테이너 이름 명시
+    volumes:
+      - ./webserver/myproject.conf:/etc/nginx/sites-available/myproject.conf
+      - ./webserver/nginx.conf:/etc/nginx/nginx.conf
+      # - static_volume:/usr/share/nginx/html/static  # Nginx에서 접근할 정적 파일 경로
+      - ./webapplication/myproject/staticfiles:/usr/share/nginx/html/static 
+    ports:
+      - "80:80"
+    depends_on:
+      - web-application # container_name 속성을 지정하지 않으면 기본적으로 web-server을 서비스 이름으로 Docker Compose에서 정의하고, Docker 내부 네트워크에서 자동으로 DNS 해석이 됨
+    networks:
+      - mynetwork
+
+# volumes:
+#   static_volume:  # 볼륨 정의 추가
+
+networks:
+  mynetwork:
+    driver: bridge
