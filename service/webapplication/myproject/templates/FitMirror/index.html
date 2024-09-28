@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>오늘 뭐 입지?</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+
+		{% load static %}
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{% static 'FitMirror/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'FitMirror/assets/css/noscript.css' }" /></noscript>
+	</head>
+	<body class="left-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">Fit Mirror</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>
+								<a href="#">Menu</a>
+								<ul>
+									<li><a href="{% url 'FitMirror:index' %}">FitMirror</a></li>
+									<li><a href="{% url 'FitStyle:index' %}">FitStyle</li>
+								</ul>
+							</li>
+							<li><a href="{% url 'FitMirror:index' %}">FitMirror</a></li>
+							<li><a href="{% url 'FitStyle:index' %}">FitStyle</a></li>
+						</ul>
+					</nav>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<header>
+							<h2><a href="#">FitMirror에 오신 것을 환영합니다</a></h2>
+							<h4><br>파일 선택을 통해 사진을 업로드해주세요.<br>옷 사진은 옷을 입고있는 사진을 올려 주셔도 됩니다.</h4>
+						</header>
+							<form id="upload-form" enctype="multipart/form-data">
+								<div class="ridge-border-container" id="banner">
+									{% csrf_token %}
+									<div class="image-upload-container" style="padding-left: 2em; padding-right: 2em;">
+										<div class="image-container">
+											<p>모델 사진</p>
+											<span id="fullbody_filename" class="file-name">선택된 파일 없음</span>
+											<input type="file" name="fullbody_image" id="fullbody_image" accept=".png, .jpg, .jpeg" required>
+											<label for="fullbody_image" class="custom-file-upload button">파일 선택</label>
+											<img id="fullbody_preview" src="#" alt="전신사진 미리보기" class="image-preview"/>
+										</div>
+										<div class="operand-container">
+											<img class="operand-image" src="{% static 'main/images/plus.png' %}" alt="더하기 기호">
+										</div>
+										<div class="image-container">
+											<p>옷 사진</p>
+											<span id="clothes_filename" class="file-name">선택된 파일 없음</span>
+											<input type="file" name="clothes_image" id="clothes_image" accept=".png, .jpg, .jpeg" required>
+											<label for="clothes_image" class="custom-file-upload button">파일 선택</label>
+											<img id="clothes_preview" src="#" alt="옷사진 미리보기" class="image-preview"/>
+										</div>
+										<div class="operand-container">
+											<img class="operand-image" src="{% static 'main/images/eqal.png' %}" alt="등호 기호">
+										</div>
+										<div class="result-container">
+											<h2>Result</h2>
+											<img id="result-image" src="" onerror="this.style.display='none'" style="width: 100%;">
+										</div>
+									</div>
+								</div>
+
+								<div id="banner" class="button-container">
+									<h3>업로드 하신 사진의 옷 종류를 알려주세요.</h3><br>
+									<div class="form-check radio-container">
+										<label>
+											<input class="form-check-input" type="radio" name="fit_type" value="상의" required> 상의
+										</label>
+										<label>
+											<input type="radio" name="fit_type" value="하의"> 하의
+										</label>
+										<label>
+											<input type="radio" name="fit_type" value="전신"> 전신
+										</label>
+									</div>
+									<button type="submit" id="fitmirror-submit" class="button" style="font-size: 1em; font-weight: 400;">착용하기</button>
+									<div id="spinner" class="spinner" style="display: none;"></div>
+								</div>
+							</form>
+						<hr />
+					</div>
+					<!-- Features -->
+					<div class="wrapper style1">
+
+						<section id="features" class="container special">
+							<header>
+								<h2>저희 서비스가 추구하는 가치는</h2>
+								<p><strong>"바쁜 현대인의 시간 절약, &nbsp;환경 친화적 개발"</strong> &nbsp;입니다.</p>
+							</header>
+							<div class="row">
+								<article class="col-4 col-12-mobile special">
+									<header>
+										<h3>시간 절약과 편리성</h3>
+									</header>
+									<p>
+										바쁜 현대인은 일상적인 활동에서 가능한 한 시간을 절약하려고 합니다. 
+										온라인 쇼핑이 대중화되었음에도 불구하고, 옷을 실제로 입어보지 않고 구매하는 것은 여전히 리스크가 큽니다. 
+										가상 옷 입히기 사이트는 사용자가 실제로 옷을 입어보지 않고도 어떤 옷이 자신에게 잘 어울리는지 미리 확인할 수 있는 기능을 제공합니다. 
+										이는 쇼핑 시간을 크게 단축시킬 뿐만 아니라, 옷을 고르고 구매하는 과정을 더욱 편리하게 만듭니다.
+									</p>
+								</article>
+								<article class="col-4 col-12-mobile special">
+									<header>
+										<h3>맞춤형 패션 스타일링</h3>
+									</header>
+									<p>
+										각 개인의 체형과 취향에 맞는 옷을 추천받을 수 있는 기능은 패션 산업에서 큰 이점을 제공합니다. 
+										사용자는 자신의 사진을 업로드만 하면 AI가 체형에 맞는 스타일을 제안해 줍니다. 
+										이 기능은 사용자가 자신에게 더 잘 어울리는 옷을 발견하게 도와주며, 이는 자신감 향상과 개인 스타일을 개선하는 데 도움을 줍니다.
+									</p>
+								</article>
+								<article class="col-4 col-12-mobile special">
+									<header>
+										<h3>환경적 측면 개선</h3>
+									</header>
+									<p>
+										패션 산업, 특히 패스트 패션은 환경에 미치는 부정적인 영향으로 인해 종종 비판의 대상이 됩니다. 
+										가상 옷 입히기 사이트를 통해 사용자는 실제로 옷을 구매하기 전에 충분히 만족할 만한 옷을 선별할 수 있습니다. 
+										이는 불필요한 구매를 줄이고, 반품을 감소시키며, 결과적으로 패션 산업의 환경오염을 줄이는 데 기여할 수 있습니다.
+									</p>
+								</article>
+							</div>
+						</section>
+					</div>
+
+				</div>
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+
+							<!-- Facebook -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon brands fa-brands fa-facebook-f circled"><span class="label">Tweets</span></h2>
+									</header>
+									<ul class="divided">
+										<li>
+											<article class="post stub">
+												<header>
+													<h6><a href="#">Choi Yun-Ho</a></h6>
+												</header>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h6><a href="#">Joo Seok-Jin</a></h6>
+												</header>
+											</article>
+										</li>
+									</ul>
+								</section>
+
+							<!-- Email -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon fa-solid fa-envelope circled"><span class="label">Posts</span></h2>
+									</header>
+									<ul class="divided">
+										<li>
+											<article class="post stub">
+												<header>
+													<h6><a href="#">Choi Yun-Ho</a></h6>
+												</header>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h6><a href="#">Joo Seok-Jin</a></h6>
+												</header>
+											</article>
+										</li>
+									</ul>
+								</section>
+
+							<!-- Instagram -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon brands fa-instagram circled"><span class="label">Photos</span></h2>
+									</header>
+									<ul class="divided">
+										<li>
+											<article class="post stub">
+												<header>
+													<h6><a href="#">Choi Yun-Ho</a></h6>
+												</header>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h6><a href="#">Joo Seok-Jin</a></h6>
+												</header>
+											</article>
+										</li>
+								</section>
+
+						</div>
+						<hr />
+						<div class="row">
+							<div class="col-12">
+
+								<!-- Contact -->
+									<section class="contact">
+										<header>
+											<h3>무슨 옷을 입을지 고민이신가요?</h3>
+										</header>
+										<p>바쁜 현대인의 삶, 높은 기대치를 만족하기 위해서 자기관리는 선택이 아닌 필수입니다. 저희가 도와드리겠습니다.</p>
+										<ul class="icons">
+											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
+											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+											<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
+										</ul>
+									</section>
+
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; CJ, Inc.  All rights reserved.</li>
+										</ul>
+									</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'FitMirror/assets/js/upload.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/jquery.dropotron.min.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/util.js' %}"></script>
+			<script src="{% static 'FitMirror/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+
+<!--
+<section>
+	<header>
+		<h3>제작자</h3>
+	</header>
+	<p>
+		저희 팀은 단국대학교 모바일시스템공학과에<br>재학 중인 최윤호, 주석진입니다. 2인 팀으로 구성되어 있으며
+		사용자가 최고로 만족할 수 있는 서비스를 제공할 수 있도록 노력하고 있습니다.
+	</p>
+	<div class="row gtr-50">
+		<div class="col-4">
+			<div class="image fit"><img src="{% static 'FitMirror/images/develop1.png' %}?{% now 'U' %}" alt="" /></div>
+		</div>
+		<div class="col-8">
+			<h4><br>최윤호</h4>
+			<p>
+				마이크로서비스 및 FullStack을 담당하고 있습니다.
+			</p>
+		</div>
+		<div class="col-4">
+			<div class="image fit"><img src="{% static 'FitMirror/images/develop2.png' %}" alt="" /></div>
+		</div>
+		<div class="col-8">
+			<h4>주석진</h4>
+			<p>
+				ai 전처리부터 파인튜닝까지<br>전반적인 인공지능 부분을 담당하고 있습니다.
+			</p>
+		</div>
+
+	</div>
+</section>
+-->
+
+

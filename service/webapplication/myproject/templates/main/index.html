@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>오늘 뭐 입지?</title>
+		<meta charset="utf-8" />
+
+		{% load static %}
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="stylesheet" href="{% static 'main/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'main/assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">오늘 뭐입지?</a></h1>
+								<hr />
+								<p>원하는 옷을 입혀보고, 코디도 받아보세요!</p>
+							</header>
+							<footer>
+								<a href="#banner" class="button circled scrolly" style="font-weight: 400;">Start</a>
+							</footer>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="{% url 'main:index' %}">Home</a></li>
+								<li>
+									<a href="#">Menu</a>
+									<ul>
+										<li><a href="{% url 'FitMirror:index' %}">FitMirror</a></li>
+										<li><a href="{% url 'FitStyle:index' %}">FitStyle</li>
+									</ul>
+								</li>
+								<li><a href="{% url 'FitMirror:index' %}">FitMirror</a></li>
+								<li><a href="{% url 'FitStyle:index' %}">FitStyle</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Banner -->
+				<section id="banner">
+					<header>
+						<h2><strong>오늘 뭐 입지?</strong>에 오신걸 환영합니다.</h2>
+						<p>
+							가상으로 옷을 착용하는 서비스 <a href="{% url 'FitMirror:index' %}">FirMirror</a>, &nbsp;
+							옷 코디를 추천해주는 서비스인 <a href="{% url 'FitStyle:index' %}">FitStyle</a>를 제공하고 있습니다.
+						</p>
+					</header>
+				</section>
+
+			<!-- Carousel -->
+				<section class="carousel">
+					<div class="reel">
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">마이크로서비스</a></h3>
+							</header>
+							<p>사용자가 서비스에 장애를 느끼지 않도록 피드백을 받으며 가용성과 내구성을 갖춘 서비스를 제공합니다.</p>
+						</article>
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">최신화된 A.I기술</a></h3>
+							</header>
+							<p>저희 서비스는 여러가지 모델을 직접 파인튜닝을 통해 결합시켜 서비스의 목적에 부합한 독자적인 모델을 이용합니다.</p>
+						</article>
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">높은 보안성</a></h3>
+							</header>
+							<p>저희는 유저의 정보를 따로 저장하여 보관하지 않습니다. 결과물 도출즉시 유저 정보와 관련된 모든 데이터는 폐기됩니다.</p>
+						</article>
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">개인 맞춤형 서비스</a></h3>
+							</header>
+							<p>사용자가 제공한 사진 기반으로, 사용자가 만족할 스타일링을 찾을 수 있도록 정확도를 높이는데 최선을 다하고 있습니다.</p>
+						</article>
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">빠른 응답속도</a></h3>
+							</header>
+							<p>저희는 쿠버네티스를 이용한 로드밸런싱을 통해 최대한의 속도로 서비스를 제공하고자 노력하고 있습니다.</p>
+						</article>
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">높은 발전 가능성</a></h3>
+							</header>
+							<p>저희는 아직 신생 서비스라 초기 데이터가 별로 없지만 확장성을 고려하여 a.i모델을 설계하였습니다.</p>
+						</article>
+
+						<article>
+							<div class="image featured"></div>
+							<header>
+								<h3><a href="#">환경 친화적 개발</a></h3>
+							</header>
+							<p>저희 서비스는 실제로 옷을 구매하기 전에 만족할 만한 아이템을 선별하고, 필요한 옷을 구매 가능하도록 합니다.</p>
+						</article>
+
+					</div>
+				</section>
+
+			<!-- Main1 -->
+				<div class="wrapper style1">
+
+					<article id="main" class="container special">
+						<header>
+							<h2><a href="#">"FitMirror"</a></h2>
+							<p>
+								사용자는 집에서 편안하게 자신의 사진과 원하는 옷 사진을 업로드함으로써, 실제로 옷을 입어보지 않고도 어울리는지를 가상으로 체험할 수 있습니다. 
+											이는 스타일링에 대한 새로운 접근 방식을 제공하며, 다양한 옷 조합을 즉시 시각화하여 사용자가 자신에게 가장 잘 어울리는 스타일을 찾을 수 있게 도와줍니다.
+							</p>
+						</header>
+						<p>
+							<div style="display: flex; justify-content: space-around; align-items: center;">
+								<img src="{% static 'main/images/fitmirror_input.png' %}" alt="input 사진" style="width: 20%;">
+								<img src="{% static 'main/images/plus.png' %}" alt="더하기 기호" style="width: 5%;">
+								<img src="{% static 'main/images/fitmirror_cloth.png' %}" alt="사진 2" style="width: 23%;">
+								<img src="{% static 'main/images/eqal.png' %}" alt="등호 기호" style="width: 5%;">
+								<img src="{% static 'main/images/fitmirror_output.png' %}" alt="ouput 사진" style="width: 20%;">
+							</div>
+						</p>
+						<footer>
+							<a href="{% url 'FitMirror:index' %}" class="button" style="font-weight: 400;">FitMirror 이용하기</a>
+						</footer>
+					</article>
+
+				</div>
+			
+			<!-- Main1 -->
+			<div class="wrapper style1">
+
+				<article id="main" class="container special">					
+					<header>
+						<h2><a href="#">"FitStyle"</a></h2>
+						<p>
+							사용자는 집에서 편안하게 자신의 사진과 원하는 옷 사진을 업로드함으로써, 실제로 옷을 입어보지 않고도 어울리는지를 가상으로 체험할 수 있습니다. 
+										이는 스타일링에 대한 새로운 접근 방식을 제공하며, 다양한 옷 조합을 즉시 시각화하여 사용자가 자신에게 가장 잘 어울리는 스타일을 찾을 수 있게 도와줍니다.
+						</p>
+					</header>
+					<p>
+						<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100%;">
+							<div style="flex: 1; display: flex; justify-content: center;">
+								<img src="{% static 'main/images/fitstyle_input.jpg' %}" alt="input 사진" style="width: 45%;">
+							</div>
+							<img src="{% static 'main/images/arrow.png' %}" alt="arrow 사진" style="width: 6%; position: absolute; left: 50%; transform: translateX(-50%);">
+							<div style="flex: 1; display: flex; justify-content: center;">
+								<img src="{% static 'main/images/fitstyle_result.png' %}" alt="output 사진" style="width: 35%;">
+							</div>
+						</div>
+					</p>
+					<footer>
+						<a href="{% url 'FitStyle:index' %}" class="button" style="font-weight: 400;">FitStyle 이용하기</a>
+					</footer>
+				</article>
+
+			</div>
+
+			<!-- Features -->
+			<div class="wrapper style1">
+
+				<section id="features" class="container special">
+					<header>
+						<h2>저희 서비스가 추구하는 가치는</h2>
+						<p><strong>"바쁜 현대인의 시간 절약, &nbsp;환경 친화적 개발"</strong> &nbsp;입니다.</p>
+					</header>
+					<div class="row">
+						<article class="col-4 col-12-mobile special">
+							<header>
+								<h3>시간 절약과 편리성</h3>
+							</header>
+							<p>
+								바쁜 현대인은 일상적인 활동에서 가능한 한 시간을 절약하려고 합니다. 
+								온라인 쇼핑이 대중화되었음에도 불구하고, 옷을 실제로 입어보지 않고 구매하는 것은 여전히 리스크가 큽니다. 
+								가상 옷 입히기 사이트는 사용자가 실제로 옷을 입어보지 않고도 어떤 옷이 자신에게 잘 어울리는지 미리 확인할 수 있는 기능을 제공합니다. 
+								이는 쇼핑 시간을 크게 단축시킬 뿐만 아니라, 옷을 고르고 구매하는 과정을 더욱 편리하게 만듭니다.
+							</p>
+						</article>
+						<article class="col-4 col-12-mobile special">
+							<header>
+								<h3>맞춤형 패션 스타일링</h3>
+							</header>
+							<p>
+								각 개인의 체형과 취향에 맞는 옷을 추천받을 수 있는 기능은 패션 산업에서 큰 이점을 제공합니다. 
+								사용자는 자신의 사진을 업로드만 하면 AI가 체형에 맞는 스타일을 제안해 줍니다. 
+								이 기능은 사용자가 자신에게 더 잘 어울리는 옷을 발견하게 도와주며, 이는 자신감 향상과 개인 스타일을 개선하는 데 도움을 줍니다.
+							</p>
+						</article>
+						<article class="col-4 col-12-mobile special">
+							<header>
+								<h3>환경적 측면 개선</h3>
+							</header>
+							<p>
+								패션 산업, 특히 패스트 패션은 환경에 미치는 부정적인 영향으로 인해 종종 비판의 대상이 됩니다. 
+								가상 옷 입히기 사이트를 통해 사용자는 실제로 옷을 구매하기 전에 충분히 만족할 만한 옷을 선별할 수 있습니다. 
+								이는 불필요한 구매를 줄이고, 반품을 감소시키며, 결과적으로 패션 산업의 환경오염을 줄이는 데 기여할 수 있습니다.
+							</p>
+						</article>
+					</div>
+				</section>
+			</div>
+
+		</div>
+
+	<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+
+					<!-- Facebook -->
+						<section class="col-4 col-12-mobile">
+							<header>
+								<h2 class="icon brands fa-brands fa-facebook-f circled"><span class="label">Tweets</span></h2>
+							</header>
+							<ul class="divided">
+								<li>
+									<article class="post stub">
+										<header>
+											<h6><a href="#">Choi Yun-Ho</a></h6>
+										</header>
+									</article>
+								</li>
+								<li>
+									<article class="post stub">
+										<header>
+											<h6><a href="#">Joo Seok-Jin</a></h6>
+										</header>
+									</article>
+								</li>
+							</ul>
+						</section>
+
+					<!-- Email -->
+						<section class="col-4 col-12-mobile">
+							<header>
+								<h2 class="icon fa-solid fa-envelope circled"><span class="label">Posts</span></h2>
+							</header>
+							<ul class="divided">
+								<li>
+									<article class="post stub">
+										<header>
+											<h6><a href="#">Choi Yun-Ho</a></h6>
+										</header>
+									</article>
+								</li>
+								<li>
+									<article class="post stub">
+										<header>
+											<h6><a href="#">Joo Seok-Jin</a></h6>
+										</header>
+									</article>
+								</li>
+							</ul>
+						</section>
+
+					<!-- Instagram -->
+						<section class="col-4 col-12-mobile">
+							<header>
+								<h2 class="icon brands fa-instagram circled"><span class="label">Photos</span></h2>
+							</header>
+							<ul class="divided">
+								<li>
+									<article class="post stub">
+										<header>
+											<h6><a href="#">Choi Yun-Ho</a></h6>
+										</header>
+									</article>
+								</li>
+								<li>
+									<article class="post stub">
+										<header>
+											<h6><a href="#">Joo Seok-Jin</a></h6>
+										</header>
+									</article>
+								</li>
+						</section>
+
+				</div>
+				<hr />
+				<div class="row">
+					<div class="col-12">
+
+						<!-- Contact -->
+							<section class="contact">
+								<header>
+									<h3>무슨 옷을 입을지 고민이신가요?</h3>
+								</header>
+								<p>바쁜 현대인의 삶, 높은 기대치를 만족하기 위해서 자기관리는 선택이 아닌 필수입니다. 저희가 도와드리겠습니다.</p>
+								<ul class="icons">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
+									<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
+								</ul>
+							</section>
+
+						<!-- Copyright -->
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; CJ, Inc.  All rights reserved.</li>
+								</ul>
+							</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Scripts -->
+			<script src="{% static 'main/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'main/assets/js/jquery.dropotron.min.js' %}"></script>
+			<script src="{% static 'main/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'main/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'main/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'main/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'main/assets/js/util.js' %}"></script>
+			<script src="{% static 'main/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
